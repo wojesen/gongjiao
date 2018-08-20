@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yinlian.pay.service.InstanceService;
+import com.yinlian.user.model.User;
+import com.yinlian.user.service.UserService;
+
 
 
 
@@ -13,17 +15,17 @@ import com.yinlian.pay.service.InstanceService;
  * Created by wangjinshan on 2018/08/20.
  */
 @RestController
-@RequestMapping("/test2")  
-public class InstanceController {
+@RequestMapping("/user")  
+public class UserController {
 
 	@Autowired
-    private InstanceService instanceService;
+    private UserService userService;
 	
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list() {
+    public User list() {
         System.out.println("212122");
-        instanceService.queryList("21");
-        return "hello";
+        User user = userService.queryList("21");
+        return user;
     }
 
 

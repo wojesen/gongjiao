@@ -18,7 +18,7 @@
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
 
 	<dubbo:registry address="zookeeper://127.0.0.1:2181" /> 
-    <dubbo:reference retries="0" interface="com.jason.business.service.InstanceService"
-                     id="instanceServiceImpl" check="false"/>  
+    <dubbo:reference retries="0" interface="com.yinlian.user.service.UserService"
+                     id="userServiceImpl" check="false"/>  
     <dubbo:protocol name="dubbo" port="20887" />
 </beans>

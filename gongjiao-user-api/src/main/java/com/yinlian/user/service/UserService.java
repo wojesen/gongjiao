@@ -2,14 +2,14 @@
 package com.yinlian.user.service;
 
 
-import java.util.List;
+import com.yinlian.user.model.User;
 
 /**
  *
  *
  * @author jason
  */
-public interface InstanceService {
+public interface UserService {
 
     /**
      *
@@ -17,6 +17,6 @@ public interface InstanceService {
      * @param
      * @return
      */
-    public List<Object> queryList(String name);
+    public User queryList(String name);
  
 }

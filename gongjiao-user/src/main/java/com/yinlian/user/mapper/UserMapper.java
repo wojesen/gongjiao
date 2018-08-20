@@ -15,8 +15,8 @@ import com.yinlian.user.model.User;
 public interface UserMapper {
 	
 	
-	@Select("select * from user where name = #{name}")
-	User findUserByName(@Param("name")String name);
+	@Select("select * from user where phone = #{phone}")
+	User findUserByName(@Param("phone")String phone);
 	
 	@Insert("INSERT INTO user(name) VALUES(#{user.name})")
 	@Options(useGeneratedKeys = true, keyProperty = "user.id")

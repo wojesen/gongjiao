@@ -11,8 +11,8 @@
     <!--  services -->
     <!-- <dubbo:service retries="0" interface="com.haier.open.config.service.ConfigReadService" ref="configReadService"/>-->
     <!-- user services -->
-    <dubbo:service retries="0" interface="com.jason.business.service.InstanceService"
-                   ref="instanceServiceImpl"/>
-    <dubbo:application name="b2c-business" />        
+    <dubbo:service retries="0" interface="com.yinlian.user.service.UserService"
+                   ref="userServiceImpl"/>
+    <dubbo:application name="gongjiao-user" />        
     <dubbo:protocol name="dubbo" port="20882" />
 </beans>
