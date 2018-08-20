@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://code.alibabatech.com/schema/dubbo
+      http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+      ">
+
+    <!--正式环境-->
+    <!--<dubbo:registry  address="zookeeper://10.138.8.223:2181" />-->
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用configReadService -->
+<!--    <dubbo:reference  id="configReadService" interface="com.haier.open.config.service.ConfigReadService"
+                      version="1.3" check="false" />-->
+    <!--dubbo:registry id="hacRegistry" address="10.135.12.123:2181" protocol="zookeeper"/>
+
+    <dubbo:reference id="hacUserServiceCli" registry="hacRegistry" interface="com.haier.openplatform.hac.service.HacUserServiceCli" version="2.1" protocol="dubbo"/-->
+</beans>
