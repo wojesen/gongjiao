@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import com.yinlian.pay.model.User;
 
 /**
-* Created by Administrator on 2016/9/2.
+* Created by wangjinshan on 2018/08/20.
 */
 @Mapper
 public interface UserMapper {

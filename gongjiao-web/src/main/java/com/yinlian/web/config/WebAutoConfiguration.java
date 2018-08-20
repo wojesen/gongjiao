@@ -7,9 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 /**
  * Desc:
- * Date: 16/2/16 22:29
- * Author: Grancy
- * Mail: guork@terminus.io
+ * Author: Created by wangjinshan on 2018/08/20.
+ * Mail: 
  */
 @Configuration
 @ComponentScan("com.yinlian.web")
