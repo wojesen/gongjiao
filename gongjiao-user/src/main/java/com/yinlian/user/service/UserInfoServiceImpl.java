@@ -70,9 +70,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 			UserInfo userInfo = (UserInfo) redisTemplate.opsForHash().get("USER:LOGIN:USERNAME", userInfoDto.getUsername());
 			if(Objects.isNull(userInfo)){
 				userInfo = userInfoMapper.selectOne(UserInfo.builder().username(userInfoDto.getUsername()).build());
-			}
-			if(Objects.isNull(userInfo)){
-				return Response.fail("用户名密码错误");
+				if(Objects.isNull(userInfo)){
+					return Response.fail("用户名密码错误");
+				}else {
+					redisTemplate.opsForHash().put("USER:LOGIN:USERNAME", userInfoDto.getUsername(), userInfo);
+				}
 			}
 			if(!StringUtils.equals(userInfo.getPassword(), CommonUtil.mD5Purity(userInfoDto.getPassword()))){
 				return Response.fail("用户名密码错误");
@@ -83,9 +85,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 			UserInfo userInfo = (UserInfo) redisTemplate.opsForHash().get("USER:LOGIN:MOBILE", userInfoDto.getMobile());
 			if(Objects.isNull(userInfo)){
 				userInfo = userInfoMapper.selectOne(UserInfo.builder().mobile(userInfoDto.getMobile()).build());
-			}
-			if(Objects.isNull(userInfo)){
-				return Response.fail("手机号未绑定用户");
+				if(Objects.isNull(userInfo)){
+					return Response.fail("手机号未绑定用户");
+				}else {
+					redisTemplate.opsForHash().put("USER:LOGIN:MOBILE", userInfoDto.getMobile(), userInfo);
+				}
 			}
 			if(!checkVerificationCode(userInfoDto.getMobile(), userInfoDto.getVerificationCode())){
 				return Response.fail("验证码错误");
@@ -96,9 +100,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 			UserInfo userInfo = (UserInfo) redisTemplate.opsForHash().get("USER:LOGIN:OPENID", userInfoDto.getOpenId());
 			if(Objects.isNull(userInfo)){
 				userInfo = userInfoMapper.selectOne(UserInfo.builder().openId(userInfoDto.getOpenId()).build());
-			}
-			if(Objects.isNull(userInfo)){
-				return Response.fail("openId不存在");
+				if(Objects.isNull(userInfo)){
+					return Response.fail("openId不存在");
+				}else {
+					redisTemplate.opsForHash().put("USER:LOGIN:OPENID", userInfoDto.getOpenId(), userInfo);
+				}
 			}
 			if(!StringUtils.equals(userInfo.getToken(), userInfoDto.getToken())){
 				return Response.fail("token不存在");
