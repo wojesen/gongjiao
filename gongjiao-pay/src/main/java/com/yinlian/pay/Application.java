@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ImportResource;
 
  
 @SpringBootApplication
-@ImportResource({"classpath:/spring/b2c-business-dubbo-provider.xml"}) 
 public class Application {
 
 	public static void main(String[] args) {

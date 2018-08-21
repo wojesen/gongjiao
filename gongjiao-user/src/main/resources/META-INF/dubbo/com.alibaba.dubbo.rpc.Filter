@@ -1,0 +1,1 @@
+extendExceptionFilter=com.yinlian.core.exception.ExtendExceptionFilter

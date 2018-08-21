@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by wangjinshan on 2018/08/20.
  */
-@Service(version = "1.0.0")
+@Service(version = "1.0.0", filter = "default,extendExceptionFilter")
 public class UserInfoServiceImpl implements UserInfoService {
 
 	@Autowired
@@ -23,7 +23,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public Response<UserInfoDto> getUserInfo(String username) {
 		System.out.println("success===============================================1");
 		UserInfo userInfo = userInfoMapper.selectOne(UserInfo.builder().username(username).build());
-//		System.out.println("success================================================"+userInfo.getId());
+		System.out.println("success================================================"+userInfo.getId());
 		UserInfoDto userInfoDto = BeanUtils.objToBean(userInfo, UserInfoDto.class);
 		return Response.ok(userInfoDto);
 	}
