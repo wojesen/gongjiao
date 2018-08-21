@@ -9,6 +9,7 @@
 		<module>gongjiao-pay-api</module>
 		<module>gongjiao-user</module>
 		<module>gongjiao-user-api</module>
+        <module>gongjiao-core</module>
 	</modules>
 	<groupId>com.yinlian</groupId>
   	<artifactId>gongjiao</artifactId>
@@ -117,6 +118,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.yinlian</groupId>
+			<artifactId>gongjiao-core</artifactId>
+			<version>${yinlian-gongjiao}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

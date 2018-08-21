@@ -1,13 +1,13 @@
 package com.yinlian.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yinlian.core.common.Response;
+import com.yinlian.user.dto.UserInfoDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yinlian.user.model.User;
-import com.yinlian.user.service.UserService;
+import com.yinlian.user.service.UserInfoService;
 
 
 
@@ -20,15 +20,13 @@ import com.yinlian.user.service.UserService;
 public class UserController {
 
 	@Reference(version = "1.0.0", timeout = 10000)
-    private UserService userService;
+    private UserInfoService userService;
 	
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public User list() {
+    public void list() {
         System.out.println("212122");
-        User user = userService.queryList("21");
-        return user;
+        Response<UserInfoDto> user = userService.getUserInfo("21");
+        System.out.println(user.getResult());
     }
-
-
    
 }
