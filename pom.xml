@@ -45,6 +45,7 @@
 		<lettuce.version>5.0.4.RELEASE</lettuce.version>
 		<dubbo-spring-boot.version>1.0.0</dubbo-spring-boot.version>
 		<yinlian-gongjiao>${project.version}</yinlian-gongjiao>
+		<commons-codec.version>1.10</commons-codec.version>
   	</properties>
 
 	<dependencyManagement>
@@ -80,6 +81,12 @@
 				<artifactId>spring-boot-starter-dubbo</artifactId>
 				<version>${dubbo-spring-boot.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 

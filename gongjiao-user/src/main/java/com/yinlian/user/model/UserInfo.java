@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
 @TableName("user_info")
 @Data
 @Builder
-public class UserInfo {
+public class UserInfo implements Serializable{
     @TableId(type = IdType.AUTO)
     private Long id;
 

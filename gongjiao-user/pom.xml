@@ -37,9 +37,8 @@
             <artifactId>spring-boot-starter-dubbo</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.yinlian</groupId>
-            <artifactId>gongjiao-pay</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
     <build>
