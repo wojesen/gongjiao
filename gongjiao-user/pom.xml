@@ -21,10 +21,6 @@
             <artifactId>gongjiao-user-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.yinlian</groupId>
-            <artifactId>gongjiao-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatisplus-spring-boot-starter</artifactId>
         </dependency>

@@ -24,12 +24,6 @@ spring:
       name: dubbo
       port: 20880
     scan: com.yinlian.user.service
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
-  typeAliasesPackage: com.yinlian.user.model
-  global-config:
-    db-column-underline: true
-    db-type: mysql
 
 
 
