@@ -1,5 +1,6 @@
 package com.yinlian.web.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,7 @@ import com.yinlian.user.service.UserService;
 @RequestMapping("/user")  
 public class UserController {
 
-	@Autowired
+	@Reference(version = "1.0.0", timeout = 10000)
     private UserService userService;
 	
     @RequestMapping(value = "/list", method = RequestMethod.GET)

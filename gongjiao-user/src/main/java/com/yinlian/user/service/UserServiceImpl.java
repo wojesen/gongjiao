@@ -1,8 +1,8 @@
 package com.yinlian.user.service;
 
 
+import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.yinlian.user.mapper.UserMapper;
 import com.yinlian.user.model.User;
@@ -12,8 +12,7 @@ import com.yinlian.user.model.User;
 /**
  * Created by wangjinshan on 2018/08/20.
  */
-@Service
-
+@Service(version = "1.0.0")
 public class UserServiceImpl implements UserService {
 
 	@Autowired

@@ -1,0 +1,24 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: gongjiao-web
+  datasource:
+    url: jdbc:mysql://123.206.81.238:3306/hobbit?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: hobbit
+    password: hobbit
+  session:
+    store-type: redis
+  redis:
+    host: redis.ql.corp
+    password: admin
+    database: 8
+  dubbo:
+    application:
+      name: gongjiao-web
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: com.yinlian.web.controller
+
+
+
