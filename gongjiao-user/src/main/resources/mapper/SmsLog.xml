@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="com.yinlian.user.model.SmsLog">
+	<resultMap id="smsLog" type="com.auth.domain.SmsLog">
+		<result property="id" column="ID"/>
+		<result property="tradeId" column="TRADE_ID"/>
+		<result property="serialNumber" column="SERIAL_NUMBER"/>
+		<result property="mobile" column="MOBILE"/>
+		<result property="msgType" column="MSG_TYPE"/>
+		<result property="verifiCode" column="VERIFI_CODE"/>
+		<result property="msg" column="MSG"/>
+		<result property="time" column="TIME"/>
+		<result property="mobileSessionId" column="MOBILE_SESSION_ID"/>
+		<result property="status" column="STATUS"/>		
+		<result property="errorTimes" column="ERROR_TIMES"/>
+		<result property="totalRecord" column="TOTAL_RECORD"/>
+		<result property="maxSendTimes" column="MAX_SEND_TIMES"/>				
+    </resultMap>
+
+	<insert id="insertSmsLog" parameterType="com.auth.domain.SmsLog">
+    	insert into T_AUTH_SMSLOG(TRADE_ID,SERIAL_NUMBER,MOBILE,MSG_TYPE,VERIFI_CODE,
+								MSG,TIME,MOBILE_SESSION_ID,STATUS,ERROR_TIMES) 
+    	values (#{tradeId,jdbcType=VARCHAR},#{serialNumber,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},#{msgType,jdbcType=VARCHAR},#{verifiCode,jdbcType=VARCHAR},
+				#{msg,jdbcType=VARCHAR},#{time,jdbcType=VARCHAR},#{mobileSessionId,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{errorTimes,jdbcType=VARCHAR}) 
+	</insert>  
+	
+	<select id="selectSmsLog" resultMap="smsLog" parameterType="com.auth.domain.SmsLog"> 
+    	select * from T_AUTH_SMSLOG where MOBILE=#{mobile} order by ID DESC limit 0,1
+	</select>
+	
+	<!-- 短信发送条数控制-->
+	<select id="selectTotalRecord" resultMap="smsLog" parameterType="com.auth.domain.SmsLog">
+		SELECT COUNT(1) totalRecord 
+		 FROM (SELECT  * FROM T_AUTH_SMSLOG WHERE LEFT(time,10)=CURDATE() AND mobile=#{mobile} LIMIT #{maxSendTimes}) as T_AUTH_SMSLOG
+	</select>
+	
+	<update id="updateSmsLog"  parameterType="com.auth.domain.SmsLog">
+		UPDATE T_AUTH_SMSLOG   
+		<set>
+			ERROR_TIMES = #{errorTimes}   
+		</set>
+		WHERE ID = #{id} AND MOBILE = #{mobile}
+	</update>	
+</mapper> 
