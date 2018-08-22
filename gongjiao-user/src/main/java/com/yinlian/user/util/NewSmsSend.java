@@ -1,8 +1,11 @@
-package com.yinlian.user.newMsg;
+package com.yinlian.user.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yinlian.core.util.ConfigUtil;
+import com.yinlian.core.util.SignUtils;
 import com.yinlian.user.dto.SmsDto;
+import com.yinlian.user.enums.SystemRetCode;
+import com.yinlian.user.enums.SystemRetField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

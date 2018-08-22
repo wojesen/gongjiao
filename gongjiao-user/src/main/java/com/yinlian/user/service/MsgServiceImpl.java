@@ -1,5 +1,6 @@
 package com.yinlian.user.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.yinlian.core.common.Response;
 import com.yinlian.core.util.ConfigUtil;
 import com.yinlian.core.util.DateUtil;
@@ -7,108 +8,19 @@ import com.yinlian.user.dto.SmsDto;
 import com.yinlian.user.dto.SmsTokenReq;
 import com.yinlian.user.mapper.SmsLogMapper;
 import com.yinlian.user.model.SmsLog;
-import com.yinlian.user.newMsg.NewSmsSend;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.yinlian.user.util.NewSmsSend;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @description：发送短信服务
  */
-@Service("msgService")
+@Service(version = "1.0.0")
+@Slf4j
 public class MsgServiceImpl implements MsgService {
 
-    private static final Logger logger = LoggerFactory.getLogger(MsgServiceImpl.class);
     @Autowired
     private SmsLogMapper smsLogMapper;
-
-//    /**
-//     *发送短信方法
-//     */
-//    private SmsDto callSendSmsInterface(SmsDto me)  {
-//        String uri=ConfigUtil.getValue("sms.uri");
-//        String mkey=ConfigUtil.getValue("sms.mkey");
-//        String publicKey=ConfigUtil.getValue("sms.pubkey");
-//
-//        logger.info("sms.uri["+uri+"]");
-//        //logger.info("sms.mkey["+mkey+"]");
-//        //logger.info("sms.pubkey["+publicKey+"]");
-//        me.setRespCode("0000");
-//        String xml = me.toxml();
-//        BASE64Encoder encoder = new BASE64Encoder();
-//        BASE64Decoder decoder = new BASE64Decoder();
-//
-//        //加密报文体格式：BASE64(商户号)|BASE64(RSA(报文加密密钥))|BASE64(3DES(报文原文))
-//        String strKey="";
-//        try {
-//            strKey = RSACoder.encryptByPublicKey(new String(mkey.getBytes(),"utf-8"), publicKey);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            me.setRespCode("-1");
-//            logger.info("发送短信实体报文-获取公钥!");
-//            return me;
-//        }
-//
-//        String strxml="";
-//        try {
-//            strxml = encoder.encode(DesUtil.encrypt(xml.toString().getBytes("utf-8"), mkey.getBytes()));
-//        } catch (Exception e) {
-//            me.setRespCode("-1");
-//            logger.info("发送短信报文-报文转码!");
-//            return me;
-//        }
-//
-//        String returnXml = encoder.encodeBuffer(me.getChannelId().getBytes()) + "|"+ strKey + "|" + strxml;
-//        PostUtil sm = new PostUtil();
-//
-//        logger.info("短信平台> 发送短信信息报文:"+returnXml);
-//        String reutrnResult="";
-//        try {
-//            reutrnResult = sm.transferData(returnXml, "utf-8", uri,200000);
-//        }catch (Exception e) {
-//            me.setRespCode("-1");
-//            logger.info("短信平台> 发送短信信息报文!");
-//            return me;
-//        }
-//        String xmlArr[] = reutrnResult.split("\\|");
-//        String xmlstr="";
-//        if(xmlArr.length>1){
-//        }
-//        try {
-//            if (xmlArr[0].equals("0")) {
-//                xmlstr = new String(decoder.decodeBuffer(xmlArr[2]),"utf-8");
-//            } else {
-//                byte[] b = DesUtil.decrypt(decoder.decodeBuffer(xmlArr[1]),mkey.getBytes());
-//                xmlstr = new String(b, "utf-8");
-//            }
-//        } catch (Exception e) {
-//            me.setRespCode("-1");
-//            logger.info("发送短信信息报文-拆分响应报文!");
-//            return me;
-//        }
-//        logger.info(">短信平台 响应提交发送短信报文:"+xmlstr);
-//        this.getLeafList(xmlstr);
-//        if(!(vals.isEmpty())){
-//            Method [] ms = me.getClass().getMethods();
-//            for(Method m:ms){
-//                Set<String> keys = vals.keySet();
-//                for(String key:keys){
-//                    if(m.getName().toLowerCase().equals(("set"+key).toLowerCase())){
-//                        try {
-//                            m.invoke(me, vals.get(key));
-//                        } catch (Exception e) {
-//                            me.setRespCode("-1");
-//                            logger.info("提交发送短信报文-构建响应实体!");
-//                            return me;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        //保存收发流水信息o
-//        return me;
-//    }
 
     @Override
     public Response sendMobileMsg(SmsTokenReq mreq) throws Exception{
@@ -167,7 +79,7 @@ public class MsgServiceImpl implements MsgService {
 
         //若不为空，则取短信模板
         String finalSendMsg = mreq.getMsg();
-        logger.info("发送短信msg："+finalSendMsg+"-------------------");
+        log.info("发送短信msg："+finalSendMsg+"-------------------");
         //-------------------------------
         //发送短信
         //-------------------------------

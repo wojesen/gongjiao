@@ -1,4 +1,4 @@
-package com.yinlian.user.newMsg;
+package com.yinlian.user.enums;
 
 
 /**
